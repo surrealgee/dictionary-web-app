@@ -7,9 +7,10 @@ function App() {
   const [word, setWord] = useState({});
 
   useEffect(() => {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hello")
+    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/key")
       .then((res) => res.json())
-      .then((data) => setWord(data[0]));
+      .then((data) => setWord(data[0]))
+      .catch((err) => console.log(err));
   }, []);
 
   console.log(word);
@@ -18,7 +19,7 @@ function App() {
     <StyledApp>
       <StyledWrapper>
         <Header />
-        <Main />
+        <Main wordData={word} />
       </StyledWrapper>
     </StyledApp>
   );
