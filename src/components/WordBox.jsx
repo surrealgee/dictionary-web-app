@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
 import styled from "styled-components";
 import playIcon from "../assets/images/icon-play.svg";
 
 function WordBox({ wordData }) {
   const { word, phonetics } = wordData;
-
-  console.log(phonetics);
 
   const phoneticsText = phonetics
     .map((element) => element.text)

@@ -4,16 +4,15 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 
 function App() {
-  const [word, setWord] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
+  const [word, setWord] = useState(0);
 
   useEffect(() => {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/key")
+    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/keyboard")
       .then((res) => res.json())
       .then((data) => setWord(data[0]))
       .catch((err) => console.log(err));
   }, []);
-
-  console.log(word);
 
   return (
     <StyledApp>

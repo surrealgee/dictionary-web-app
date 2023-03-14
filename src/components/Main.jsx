@@ -1,14 +1,13 @@
-import { useState } from "react";
-import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import WordBox from "./WordBox";
+import NounSection from "./NounSection";
 
 function Main({ wordData }) {
-  //   console.log(wordData);
   return (
     <main>
       <SearchBar />
-      <WordBox wordData={wordData} />
+      {wordData && <WordBox wordData={wordData} />}
+      {wordData && <NounSection wordData={wordData} />}
     </main>
   );
 }
