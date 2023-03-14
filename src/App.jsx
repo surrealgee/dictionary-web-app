@@ -31,6 +31,7 @@ const StyledApp = styled.div`
 const StyledWrapper = styled(StyledApp)`
   width: 90%;
   margin: 0 auto;
+  padding-bottom: 2em;
 `;
 
 export default App;
