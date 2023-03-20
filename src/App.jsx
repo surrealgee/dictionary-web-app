@@ -7,7 +7,8 @@ import Main from "./components/Main";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [word, setWord] = useState("");
-  const [wordData, setWordData] = useState(0);
+  const [wordData, setWordData] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`;
 
@@ -25,10 +26,18 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (word !== "") {
+    if (word === "") {
+      setIsEmpty(true);
+    } else {
       setSearchTerm(word);
+      setWord("");
+      setIsEmpty(false);
     }
-    setWord("");
+    // if (word !== "") {
+    //   setSearchTerm(word);
+    // }
+    // setWord("");
+    // setIsEmpty(true);
   }
 
   return (
@@ -39,8 +48,9 @@ function App() {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           word={word}
+          isEmpty={isEmpty}
         />
-        {searchTerm && <Main wordData={wordData} />}
+        {wordData && <Main wordData={wordData} />}
       </StyledWrapper>
     </StyledApp>
   );

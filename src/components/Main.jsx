@@ -6,10 +6,10 @@ import SourceSection from "./SourceSection";
 function Main({ wordData }) {
   return (
     <main>
-      {wordData && <WordBox wordData={wordData} />}
-      {wordData && <NounSection wordData={wordData} />}
-      {wordData && <VerbSection wordData={wordData} />}
-      {wordData && <SourceSection wordData={wordData} />}
+      <WordBox wordData={wordData} />
+      <NounSection wordData={wordData} />
+      <VerbSection wordData={wordData} />
+      <SourceSection wordData={wordData} />
     </main>
   );
 }
