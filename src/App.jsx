@@ -1,24 +1,46 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [word, setWord] = useState(0);
+  const [word, setWord] = useState("");
+  const [wordData, setWordData] = useState(0);
+
+  const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`;
 
   useEffect(() => {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/keyboard")
+    fetch(URL)
       .then((res) => res.json())
-      .then((data) => setWord(data[0]))
+      .then((data) => setWordData(data[0]))
       .catch((err) => console.log(err));
-  }, []);
+  }, [searchTerm]);
+
+  function handleChange(e) {
+    const { value } = e.target;
+    setWord(value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (word !== "") {
+      setSearchTerm(word);
+    }
+    setWord("");
+  }
 
   return (
     <StyledApp>
       <StyledWrapper>
         <Header />
-        <Main wordData={word} />
+        <SearchBar
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          word={word}
+        />
+        {searchTerm && <Main wordData={wordData} />}
       </StyledWrapper>
     </StyledApp>
   );

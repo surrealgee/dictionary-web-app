@@ -2,16 +2,24 @@ import { useState } from "react";
 import styled from "styled-components";
 import lookup from "../assets/images/icon-search.svg";
 
-function SearchBar() {
+function SearchBar({ handleChange, handleSubmit, word }) {
+  console.log(word);
   return (
-    <StyleSearchBar>
-      <input type="text" />
-      <img src={lookup} alt="glass magnifier icon" />
+    <StyleSearchBar onSubmit={handleSubmit}>
+      <input
+        type="text"
+        onChange={handleChange}
+        value={word}
+        placeholder="Search for a word"
+      />
+      <button type="submit">
+        <img src={lookup} alt="glass magnifier icon" />
+      </button>
     </StyleSearchBar>
   );
 }
 
-const StyleSearchBar = styled.div`
+const StyleSearchBar = styled.form`
   background: #f4f4f4;
   border-radius: 16px;
   display: flex;
@@ -22,6 +30,7 @@ const StyleSearchBar = styled.div`
   margin-top: 1.5em;
 
   input {
+    width: 95%;
     background: none;
     border: none;
     font-family: "Inter";
@@ -34,6 +43,11 @@ const StyleSearchBar = styled.div`
   input:focus,
   input:active {
     outline: none;
+  }
+
+  button {
+    border: none;
+    background: none;
   }
 `;
 

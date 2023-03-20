@@ -3,7 +3,7 @@ import newWindow from "../assets/images/icon-new-window.svg";
 
 function SourceSection({ wordData }) {
   const { sourceUrls } = wordData;
-  console.log(sourceUrls);
+  // console.log(sourceUrls);
   return (
     <StyledSection>
       <p>Source</p>

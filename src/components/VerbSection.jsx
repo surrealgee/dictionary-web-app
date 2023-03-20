@@ -20,7 +20,7 @@ function VerbSection({ wordData }) {
       <SectionTitle>verb</SectionTitle>
       <h3>Meaning</h3>
       <ul>{definitionsList}</ul>
-      <p>"{examplesList}"</p>
+      {examplesList === "" && <p>"{examplesList}"</p>}
     </StyledSection>
   );
 }
