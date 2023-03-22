@@ -3,12 +3,14 @@ import styled from "styled-components";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 import Main from "./components/Main";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [word, setWord] = useState("");
   const [wordData, setWordData] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`;
 
@@ -16,7 +18,7 @@ function App() {
     fetch(URL)
       .then((res) => res.json())
       .then((data) => setWordData(data[0]))
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, [searchTerm]);
 
   function handleChange(e) {
@@ -32,12 +34,8 @@ function App() {
       setSearchTerm(word);
       setWord("");
       setIsEmpty(false);
+      setIsSubmited(true);
     }
-    // if (word !== "") {
-    //   setSearchTerm(word);
-    // }
-    // setWord("");
-    // setIsEmpty(true);
   }
 
   return (
@@ -50,6 +48,7 @@ function App() {
           word={word}
           isEmpty={isEmpty}
         />
+        {wordData === undefined && isSubmited && <NotFound />}
         {wordData && <Main wordData={wordData} />}
       </StyledWrapper>
     </StyledApp>
