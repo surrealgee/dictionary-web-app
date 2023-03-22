@@ -1,13 +1,17 @@
-import { useState } from "react";
 import styled from "styled-components";
 import moon from "../assets/images/icon-moon.svg";
+import moonBlue from "../assets/images/icon-moon-blue.svg";
 import SwitchButton from "./SwitchButton";
 
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
+
 function ThemeSelector() {
+  const { darkTheme } = useContext(ThemeContext);
   return (
     <StyledThemeSelector>
       <SwitchButton />
-      <img src={moon} alt="moon icon" />
+      <img src={darkTheme ? moonBlue : moon} alt="moon icon" />
     </StyledThemeSelector>
   );
 }

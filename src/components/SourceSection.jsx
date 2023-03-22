@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import newWindow from "../assets/images/icon-new-window.svg";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 function SourceSection({ wordData }) {
+  const { darkTheme } = useContext(ThemeContext);
   const { sourceUrls } = wordData;
-  // console.log(sourceUrls);
+
   return (
-    <StyledSection>
+    <StyledSection isDark={darkTheme}>
       <p>Source</p>
       <a href={sourceUrls[0]}>
         {sourceUrls[0]}
@@ -16,6 +19,7 @@ function SourceSection({ wordData }) {
 }
 
 const StyledSection = styled.div`
+  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   margin-top: 1.5em;
 
   p,

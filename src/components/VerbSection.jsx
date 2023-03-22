@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 function VerbSection({ wordData }) {
+  const { darkTheme } = useContext(ThemeContext);
   const { meanings } = wordData;
 
   const definitionsList = meanings[1].definitions
@@ -16,7 +19,7 @@ function VerbSection({ wordData }) {
     });
 
   return (
-    <StyledSection>
+    <StyledSection isDark={darkTheme}>
       <SectionTitle>verb</SectionTitle>
       <h3>Meaning</h3>
       <ul>{definitionsList}</ul>
@@ -26,6 +29,7 @@ function VerbSection({ wordData }) {
 }
 
 const StyledSection = styled.div`
+  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   border-bottom: 1px solid #e9e9e9;
   padding-bottom: 2em;
 

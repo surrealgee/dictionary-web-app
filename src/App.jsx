@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 import styled from "styled-components";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
@@ -11,6 +12,8 @@ function App() {
   const [wordData, setWordData] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isSubmited, setIsSubmited] = useState(false);
+
+  const { darkTheme } = useContext(ThemeContext);
 
   const URL = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchTerm}`;
 
@@ -39,8 +42,8 @@ function App() {
   }
 
   return (
-    <StyledApp>
-      <StyledWrapper>
+    <StyledApp isDark={darkTheme}>
+      <StyledWrapper isDark={darkTheme}>
         <Header />
         <SearchBar
           handleChange={handleChange}
@@ -56,10 +59,12 @@ function App() {
 }
 
 const StyledApp = styled.div`
-  background-color: #fff;
+  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
+  min-height: 100vh;
 `;
 
 const StyledWrapper = styled(StyledApp)`
+  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   width: 90%;
   margin: 0 auto;
   padding-bottom: 2em;

@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import playIcon from "../assets/images/icon-play.svg";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 function WordBox({ wordData }) {
+  const { darkTheme } = useContext(ThemeContext);
   const { word, phonetics } = wordData;
 
   const phoneticsText = phonetics
@@ -19,7 +22,7 @@ function WordBox({ wordData }) {
   }
 
   return (
-    <StyledWordBox>
+    <StyledWordBox isDark={darkTheme}>
       <div className="info">
         <h1>{word}</h1>
         <p>{phoneticsText[0]}</p>
@@ -34,6 +37,7 @@ function WordBox({ wordData }) {
 }
 
 const StyledWordBox = styled.div`
+  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   display: flex;
   align-items: center;
   justify-content: space-between;

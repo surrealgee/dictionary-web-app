@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
+
 import styled from "styled-components";
 import lookup from "../assets/images/icon-search.svg";
 
 function SearchBar({ handleChange, handleSubmit, word, isEmpty }) {
+  const { darkTheme } = useContext(ThemeContext);
+
   return (
     <div>
       <StyleSearchBar onSubmit={handleSubmit} isEmpty={isEmpty}>
@@ -20,6 +24,10 @@ function SearchBar({ handleChange, handleSubmit, word, isEmpty }) {
     </div>
   );
 }
+
+// const StyledContainer = styled`
+//   background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
+//   `;
 
 const StyleSearchBar = styled.form`
   background: #f4f4f4;

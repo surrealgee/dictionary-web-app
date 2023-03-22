@@ -1,10 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import { ThemeContext } from "../ThemeContext";
 
 function SwitchButton() {
+  const { toggleTheme } = useContext(ThemeContext);
   return (
     <SwitchWrapper>
-      <CheckBox id="checkbox" type="checkbox" />
+      <CheckBox id="checkbox" type="checkbox" onChange={toggleTheme} />
       <CheckBoxLabel htmlFor="checkbox" />
     </SwitchWrapper>
   );
