@@ -33,6 +33,7 @@ function NounSection({ wordData }) {
 
 const StyledSection = styled.div`
   background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
+  color: ${({ isDark }) => (isDark ? "#fff" : "2d2d2d")};
 
   h3 {
     font-family: "Inter";
@@ -52,7 +53,6 @@ const StyledSection = styled.div`
     font-weight: 400;
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: #2d2d2d;
     position: relative;
   }
 
@@ -87,7 +87,6 @@ const SectionTitle = styled.h2`
   font-style: italic;
   font-weight: 700;
   font-size: 1.125rem;
-  color: #2d2d2d;
   position: relative;
   &::after {
     content: "";

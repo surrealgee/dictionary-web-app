@@ -9,7 +9,11 @@ function SearchBar({ handleChange, handleSubmit, word, isEmpty }) {
 
   return (
     <div>
-      <StyleSearchBar onSubmit={handleSubmit} isEmpty={isEmpty}>
+      <StyleSearchBar
+        onSubmit={handleSubmit}
+        isEmpty={isEmpty}
+        isDark={darkTheme}
+      >
         <input
           type="text"
           onChange={handleChange}
@@ -20,17 +24,13 @@ function SearchBar({ handleChange, handleSubmit, word, isEmpty }) {
           <img src={lookup} alt="glass magnifier icon" />
         </button>
       </StyleSearchBar>
-      {isEmpty && <ErrorMsg>Whoops, can't be empty…</ErrorMsg>}
+      <ErrorMsg isEmpty={isEmpty}>Whoops, can't be empty…</ErrorMsg>
     </div>
   );
 }
 
-// const StyledContainer = styled`
-//   background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
-//   `;
-
 const StyleSearchBar = styled.form`
-  background: #f4f4f4;
+  background: ${({ isDark }) => (isDark ? "#1F1F1F" : "#f4f4f4")};
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -38,8 +38,12 @@ const StyleSearchBar = styled.form`
   height: 48px;
   padding: 1em 1.5em;
   margin-top: 1.5em;
-  border: ${({ isEmpty }) =>
-    isEmpty ? "1px solid #FF5252" : "1px solid #f4f4f4"};
+  border: ${({ isEmpty, isDark }) =>
+    isEmpty
+      ? "1px solid #FF5252"
+      : isDark
+      ? "1px solid #1F1F1F"
+      : "1px solid #f4f4f4"};
 
   input {
     width: 95%;
@@ -49,9 +53,7 @@ const StyleSearchBar = styled.form`
     font-weight: 700;
     font-size: 1rem;
     line-height: 1.9;
-    color: #2d2d2d;
-    mix-blend-mode: normal;
-    opacity: 0.75;
+    color: ${({ isDark }) => (isDark ? "#FFFFFF" : "#2d2d2d")};
   }
 
   input:focus,
@@ -66,6 +68,7 @@ const StyleSearchBar = styled.form`
 `;
 
 const ErrorMsg = styled.p`
+  visibility: ${({ isEmpty }) => (isEmpty ? "initial" : "hidden")};
   font-family: "Inter";
   font-size: 1rem;
   color: #ff5252;

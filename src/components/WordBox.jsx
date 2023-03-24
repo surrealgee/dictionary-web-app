@@ -37,16 +37,15 @@ function WordBox({ wordData }) {
 }
 
 const StyledWordBox = styled.div`
-  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 1.5em;
 
   .info h1 {
+    color: ${({ isDark }) => (isDark ? "#fff" : "2d2d2d")};
     font-family: "Inter";
     font-size: 2rem;
-    color: #2d2d2d;
     margin: 0 0;
   }
 

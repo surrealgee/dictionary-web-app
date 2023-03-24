@@ -12,24 +12,25 @@ function VerbSection({ wordData }) {
       return <li key={index}>{element.definition}</li>;
     });
 
-  const examplesList = meanings[1].definitions
-    .slice(0, 1)
-    .map((element, index) => {
-      return element.example;
-    });
+  const examplesList = meanings[1].definitions.slice(0, 1).map((element) => {
+    /* If element has an example property
+       it returns it wrapped in quotations */
+    return element.example && `"${element.example}"`;
+  });
 
   return (
     <StyledSection isDark={darkTheme}>
       <SectionTitle>verb</SectionTitle>
       <h3>Meaning</h3>
       <ul>{definitionsList}</ul>
-      {examplesList === "" && <p>"{examplesList}"</p>}
+      {examplesList.length > 0 && <p>{examplesList}</p>}
     </StyledSection>
   );
 }
 
 const StyledSection = styled.div`
   background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
+  color: ${({ isDark }) => (isDark ? "#fff" : "2d2d2d")};
   border-bottom: 1px solid #e9e9e9;
   padding-bottom: 2em;
 
@@ -51,7 +52,6 @@ const StyledSection = styled.div`
     font-weight: 400;
     font-size: 0.9375rem;
     line-height: 1.6;
-    color: #2d2d2d;
     position: relative;
   }
 
@@ -89,14 +89,13 @@ const SectionTitle = styled.h2`
   font-style: italic;
   font-weight: 700;
   font-size: 1.125rem;
-  color: #2d2d2d;
   position: relative;
   &::after {
     content: "";
     position: absolute;
     width: 84%;
     height: 1px;
-    background: #e9e9e9;
+    background-color: #e9e9e9;
     top: 12px;
     left: 51px;
     // border: 10px solid blue;

@@ -19,7 +19,6 @@ function SourceSection({ wordData }) {
 }
 
 const StyledSection = styled.div`
-  background-color: ${({ isDark }) => (isDark ? "#050505" : "#fff")};
   margin-top: 1.5em;
 
   p,
@@ -33,9 +32,11 @@ const StyledSection = styled.div`
   }
 
   a {
+    margin-top: 0.5em;
     color: #2d2d2d;
     display: flex;
     gap: 0.5em;
+    color: ${({ isDark }) => (isDark ? "#fff" : "2d2d2d")};
   }
 
   img {

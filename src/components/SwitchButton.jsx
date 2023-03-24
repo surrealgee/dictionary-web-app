@@ -4,10 +4,15 @@ import { useContext } from "react";
 import { ThemeContext } from "../ThemeContext";
 
 function SwitchButton() {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
   return (
     <SwitchWrapper>
-      <CheckBox id="checkbox" type="checkbox" onChange={toggleTheme} />
+      <CheckBox
+        id="checkbox"
+        type="checkbox"
+        onChange={toggleTheme}
+        checked={darkTheme}
+      />
       <CheckBoxLabel htmlFor="checkbox" />
     </SwitchWrapper>
   );
